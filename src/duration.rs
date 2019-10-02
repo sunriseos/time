@@ -287,7 +287,7 @@ impl Duration {
     }
 
     /// Returns the raw value of duration.
-    #[cfg(target_env = "sgx")]
+    #[cfg(any(target_env = "sgx", target_os = "sunrise"))]
     pub(crate) fn raw(&self) -> (i64, i32) {
         (self.secs, self.nanos)
     }

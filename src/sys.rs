@@ -5,6 +5,7 @@ pub use self::inner::*;
 #[cfg(any(
     all(target_arch = "wasm32", not(target_os = "emscripten")),
     target_os = "redox",
+    target_os = "sunrise",
     target_env = "sgx"
 ))]
 mod common {
@@ -271,7 +272,7 @@ mod inner {
     impl Eq for SteadyTime {}
 }
 
-#[cfg(target_env = "sgx")]
+#[cfg(any(target_env = "sgx", target_os = "sunrise"))]
 mod inner {
     use std::ops::{Add, Sub};
     use Tm;
